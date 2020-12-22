@@ -1,19 +1,22 @@
 import React, { Component } from "react";
 import * as THREE from 'three';
 
-function one() {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(50, 500 / 400, 0.1, 1000);
+function getGeometry() {
     const geometry = new THREE.SphereGeometry(3, 30, 30, 0, Math.PI * 2, 0, Math.PI * 2);
     const material = new THREE.MeshNormalMaterial({flatShading: true});
-    const cube = new THREE.Mesh(geometry, material);
 
-    scene.add(cube);
-
-    return [scene, camera, cube]
+    return new THREE.Mesh(geometry, material);
 }
 
-function two() {
+function getSceneAndCamera() {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, 500 / 400, 0.1, 1000);
+
+    return [scene, camera]
+}
+
+
+function getRenderer() {
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(500, 400);
 
@@ -23,12 +26,14 @@ function two() {
 class App extends Component  {
 
     componentDidMount() {
-        const renderer = two();
+        const renderer = getRenderer();
         document.body.appendChild(renderer.domElement);
 
-        let [scene, camera, cube] = one();
-
+        let [scene, camera] = getSceneAndCamera();
         camera.position.z = 10;
+
+        let cube = getGeometry();
+        scene.add(cube);
 
 
         const main = () => {
