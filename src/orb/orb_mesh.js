@@ -36,7 +36,7 @@ function createGeometry( sizing ) {
         1, // radiusTop
         1, // radiusBottom
         sizing.height, // height
-        10, // radiusSegments
+        30, // radiusSegments
         sizing.segmentCount, // heightSegments
         true // openEnded
     );
@@ -68,7 +68,17 @@ function createGeometry( sizing ) {
         // skinIndex: ${skinIndex} skinWeight: ${skinWeight}`);
 
         skinIndices.push(skinIndex, 0, 0, 0);
-        skinWeights.push(1, 0, 0, 0);
+
+        if (getVertexRowIndex(i, 30) > (30 / 2) ) {
+
+            skinWeights.push(1, 0, 0, 0);
+
+        } else {
+
+            skinWeights.push(0, 0, 0, 0);
+
+        }
+
 
     }
 
@@ -76,4 +86,10 @@ function createGeometry( sizing ) {
     geometry.setAttribute('skinWeight', new Float32BufferAttribute(skinWeights, 4));
 
     return geometry;
+}
+
+function getVertexRowIndex(iterationNum, radiusSegments) {
+    const index = Math.floor(iterationNum / radiusSegments % 1 * radiusSegments);
+
+    return index
 }

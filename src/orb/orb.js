@@ -44,8 +44,6 @@ function getConfig () {
 function setTriangleFrame(orbMesh, counter) {
     const degree = 0.017;
 
-    console.log("CALLED", orbMesh.skeleton.bones[1].rotation.z, orbMesh.skeleton.bones[2].rotation.z, orbMesh.skeleton.bones[3].rotation.z);
-
     let left = orbMesh.skeleton.bones[3].rotation.z;
 
 
