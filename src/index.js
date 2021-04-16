@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Orb from './orb/orb';
+import Render from './render';
 
 ReactDOM.render(
-    <Orb />,
+    <Render />,
   document.getElementById('root')
 );
 
