@@ -5,10 +5,10 @@ import { Mesh } from 'three/src/objects/Mesh.js';
 import { setMorph } from './morph'
 
 
-const getPlaneConfig = () => {
+const getPlaneConfig = (options) => {
     const config = {
-        width: 8,
-        height: 8,
+        width: options.width || 2,
+        height: options.height || 2,
         widthSegments: 2,
         heightSegments: 2,
     };
@@ -16,9 +16,9 @@ const getPlaneConfig = () => {
     return config
 };
 
-export default () => {
+export default function getPlane (options) {
 
-    const config = getPlaneConfig();
+    const config = getPlaneConfig(options);
 
     const geometry = new PlaneBufferGeometry(
         config.width,
@@ -27,17 +27,21 @@ export default () => {
         config.heightSegments
     );
 
-    setMorph(geometry, config);
+    setMorph(geometry, options);
 
     const material = new MeshStandardMaterial( {
         color: 0x2194ce,
         emissive: 0x2194ce,
-        flatShading: true,
+        flatShading: false,
         wireframe: true,
         morphTargets: true
     } );
 
     const mesh = new Mesh(geometry, material);
+
+    // set morph to max for scalarHeight representation
+    // animate this at some point 
+    mesh.morphTargetInfluences[ 0 ] = 1;
 
     return mesh
 };

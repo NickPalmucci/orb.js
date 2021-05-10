@@ -1,7 +1,7 @@
 import { GUI } from 'dat.gui';
 import { setMorphWithValue } from './morph'
 
-export default (mesh) => {
+export default function initGui (mesh)  {
 
     const params = {
         Increase: 0,

@@ -1,28 +1,17 @@
 import { Float32BufferAttribute } from 'three/src/core/BufferAttribute';
 
 
-export const setMorph = (geometry, config) => {
+export const setMorph = (geometry, options) => {
 
   const position = geometry.attributes.position;
 
   let newPositionArray = Array.from(position.array);
-  newPositionArray[14] = 8;
+
+  // hardcoded vertex based on 2 heightSegments and 2 widthSegments
+  newPositionArray[14] = options.scalarHeight;
 
   const newPositions = new Float32BufferAttribute(newPositionArray, 3);
 
   geometry.morphAttributes.position = [];
   geometry.morphAttributes.position[0] = newPositions;
 };
-
-// export const setMorphWithValue = (mesh, value) => {
-//
-//     const position = mesh.geometry.attributes.position;
-//
-//     let newPositionArray = position.array;
-//     newPositionArray[14] = value;
-//
-//     const newPositions = new Float32BufferAttribute(newPositionArray, 3);
-//
-//     mesh.geometry.setAttribute('position', newPositions)
-//
-// };
