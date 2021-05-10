@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import * as THREE from 'three';
 import orbitControlInit from 'three-orbit-controls';
 
-import getPlane from './plane/plane'
-import initPlaneGUI from './plane/gui'
+import getGraph from './graph/graph';
 
-import getBox from './box/box';
-import initBoxGUI from './box/gui';
+// import getBox from './box/box';
+// import initBoxGUI from './box/gui';
 
 
 function getSceneAndCamera() {
@@ -35,11 +34,9 @@ class Render extends Component  {
         const OrbitControls = orbitControlInit(THREE);
         const controls =  new OrbitControls(camera, renderer.domElement);
 
-        let Mesh = getPlane();
+        let graph = getGraph([[1,2,5,6], [2,2,4,6,8,4], [2,4,7,7]])
 
-        scene.add(Mesh);
-
-        initPlaneGUI(Mesh);
+        scene.add(graph);
 
         renderer.setAnimationLoop( () => {
 

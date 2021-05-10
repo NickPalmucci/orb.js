@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Render from './render';
 
 ReactDOM.render(
-    <Render />,
+    <Render/>,
   document.getElementById('root')
 );
 
