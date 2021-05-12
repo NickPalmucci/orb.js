@@ -9,13 +9,10 @@ export default function getGraph(rows) {
     for (let i=0; i < normalizedInputArray.length -1; i++) {
         const graphRow = getPlanes(normalizedInputArray[i])
 
-        graphRow.position.set(0, i*2, 0)
+        graphRow.position.set(0, i*16, 0)
 
         graph.add(graphRow)
     }
-
-    // graph should be Group object
-    // graph.center()
 
     return graph
 }
@@ -60,6 +57,5 @@ const normalizeLength = (row, maxLength) => {
 const getZeroArray = (length) => {
     // https://stackoverflow.com/questions/3746725/how-to-create-an-array-containing-1-n
 
-    return Array.from({length: length}, (_, i) => 0); 
+    return Array.from({length: length}, (_, i) => { return {scalarHeight: 0, scalarArea: 0} } ); 
 }
-

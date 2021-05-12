@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import orbitControlInit from 'three-orbit-controls';
 
 import getGraph from './graph/graph';
+import getPlane from './plane/plane';
 
 // import getBox from './box/box';
 // import initBoxGUI from './box/gui';
@@ -17,9 +18,30 @@ function getSceneAndCamera() {
 
 function getRenderer() {
     const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(500, 400);
+    renderer.setSize(800, 800);
 
     return renderer
+}
+
+function getRandomValue(maxValue) {
+    return Math.ceil(Math.random() * maxValue)
+}
+
+function getTestData() {
+    const data = []
+    const numRows = getRandomValue(10)
+
+    for (let i = 0; i < numRows-1; i++) {
+        const row = []
+        const rowLen = getRandomValue(10)
+
+        for (let i = 0; i < rowLen - 1; i++) {
+            const item = { scalarHeight: getRandomValue(20), scalarArea: getRandomValue(16) }
+            row.push(item)
+        }
+        data.push(row)
+    }
+    return data
 }
 
 class Render extends Component  {
@@ -34,10 +56,10 @@ class Render extends Component  {
         const OrbitControls = orbitControlInit(THREE);
         const controls =  new OrbitControls(camera, renderer.domElement);
 
-        let graph = getGraph([[1,2,5,6], [2,2,4,6,8,4], [2,4,7,7]])
+        let graph = getGraph(getTestData())
 
         scene.add(graph);
-
+    
         renderer.setAnimationLoop( () => {
 
             renderer.render( scene, camera );
