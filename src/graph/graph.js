@@ -36,7 +36,7 @@ const addSpacersAndNormailize = (rows) => {
     rows.forEach((row, i) => {
         const newRow = normalizeLength(row, maxLength)
 
-        if (i === row.length -1) {    
+        if (i === rows.length -1) {
             normalizedGraph.push(newRow)
 
         } else {
