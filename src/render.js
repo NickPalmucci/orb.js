@@ -17,12 +17,12 @@ function getSceneAndCamera() {
     const near = 0.1;
     const far = 1000;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.set(25, 0, 75);
-    camera.up.set(0, 0, 1);
-    camera.lookAt(0, 0, 0);
-    
-    // const camera = new THREE.PerspectiveCamera(50, 500 / 400, 0.1, 1000);
 
+    // make this more dynamic?
+    camera.position.set(120, -120, 60);
+    camera.up.set(0, 0, 1);
+    camera.lookAt( 0, 0, 0);
+    
     return [scene, camera]
 }
 
@@ -66,9 +66,6 @@ class Render extends Component  {
         const controls = new OrbitControls(camera, renderer.domElement);
 
         const testData = getTestData();
-
-        // let graph = getGraph(testData)
-        // scene.add(graph);
 
         let boxes = getBoxesWithTestData(testData)
         
