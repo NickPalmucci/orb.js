@@ -1,5 +1,5 @@
 import { Group } from 'three/src/objects/Group';
-import getPlanes from '../planes/planes';
+import getPlanes from './planes/planes';
 
 export default function getGraph(rows) {
     const normalizedInputArray = addSpacersAndNormailize(rows)

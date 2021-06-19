@@ -1,5 +1,5 @@
 import { Group } from 'three/src/objects/Group';
-import getPlane from '../plane/plane';
+import getPlane from './plane/plane';
 import { setColorByScalar } from './utils'
 
 // import initPlaneGUI from '../plane/gui'
